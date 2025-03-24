@@ -1,8 +1,6 @@
 package com.D.DolceForno;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,19 @@ public class CookieController {
         return cookieService.show();
     }
     //Adicionar
-    //Atualizar
+    @PostMapping("/adicionar")
+    public CookieModel add(@RequestBody CookieModel cookieModel){
+        return cookieService.add(cookieModel);
+    }
     //Deletar
+    @DeleteMapping("/deletar/{id}")
+    public void del(@PathVariable Long id){
+        cookieService.del(id);
+    }
+    //Atualizar
+    @PatchMapping("/atualizar/{id}")
+    public CookieModel pchange(@PathVariable Long id, @RequestBody CookieModel cookieModel){
+        return cookieService.pchange(id, cookieModel);
+    }
+
 }
